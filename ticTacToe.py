@@ -37,9 +37,11 @@ class TicTacToe():
             gameOver = False
 
             while gameOver == False:
-                gameOver = self.checkGameOver()
                 x, y = self.takeInput()
                 self.updateMap(x, y, self.player)
+                gameOver = self.checkGameOver()
+
+            self.drawBoard()
                 
             if self.player == "X":
                 print("Player O has won the game!!!")
@@ -48,10 +50,9 @@ class TicTacToe():
 
     def takeInput(self):
         valid = False
-
-        self.drawBoard()
-
+        
         while not valid:
+            self.drawBoard()
             try:
                 userInputX = int(input("\nPlace your marker\nType in the x co-ordinate (0-2): "))
                 userInputY = int(input("Type in the y co-ordinate (0-2): "))
@@ -62,7 +63,7 @@ class TicTacToe():
             except ValueError:
                 print("\nPlease enter valid integers")
         
-        return userInputX, userInputY
+        return userInputY, userInputX
 
     def checkGameOver(self) -> bool:
         # Check rows and columns
